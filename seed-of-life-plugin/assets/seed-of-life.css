@@ -1,0 +1,368 @@
+/**
+ * Seed of Life WordPress Plugin CSS
+ * Version: 2.0.0
+ * Enhanced with full color customization support
+ */
+
+/* Container styles */
+.seed-of-life-container {
+    display: inline-block;
+    padding: 20px;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 
+                0 2px 4px rgba(0, 0, 0, 0.05);
+    margin: 20px auto;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.seed-of-life-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 
+                0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Canvas styles */
+.seed-of-life-canvas {
+    display: block;
+    cursor: grab;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 10px;
+    transition: filter 0.3s ease;
+}
+
+.seed-of-life-canvas:active {
+    cursor: grabbing;
+}
+
+.seed-of-life-canvas.animating {
+    cursor: default;
+}
+
+/* Control buttons with enhanced styling */
+.seed-of-life-controls {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.sol-button {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(102, 126, 234, 0.3);
+}
+
+.sol-button:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+}
+
+.sol-button:active {
+    transform: scale(0.98) translateY(0);
+    box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
+}
+
+/* Loading state */
+.seed-of-life-loading {
+    position: relative;
+}
+
+.seed-of-life-loading::before {
+    content: "✨ Loading Sacred Geometry...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 240, 240, 0.95));
+    padding: 15px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+    color: #667eea;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .seed-of-life-container {
+        padding: 15px;
+        margin: 10px;
+    }
+    
+    .sol-button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .seed-of-life-controls {
+        gap: 8px;
+    }
+}
+
+/* Admin page styles */
+.seed-of-life-admin-wrapper {
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.seed-of-life-preview {
+    margin-top: 30px;
+    padding: 30px;
+    background: linear-gradient(145deg, #f5f5f5, #e8e8e8);
+    border-radius: 10px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.seed-of-life-preview h2 {
+    color: #667eea;
+    margin-bottom: 20px;
+}
+
+.seed-of-life-usage {
+    margin-top: 30px;
+    padding: 30px;
+    background: linear-gradient(145deg, #e8f5e9, #d4edd5);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
+}
+
+.seed-of-life-usage code {
+    background: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    color: #e91e63;
+    font-size: 14px;
+}
+
+/* Color input fields in admin */
+.color-field {
+    width: 120px !important;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+.form-table .color-preview {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    vertical-align: middle;
+    margin-right: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-table th {
+    background: linear-gradient(90deg, #f9f9f9, #ffffff);
+    padding: 15px !important;
+}
+
+.form-table h3 {
+    color: #667eea;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+/* Error state */
+.seed-of-life-error {
+    background: linear-gradient(135deg, #ffebee, #ffcdd2);
+    color: #c62828;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 4px solid #f44336;
+}
+
+.seed-of-life-error::before {
+    content: "⚠ ";
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+/* Success message */
+.seed-of-life-success {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    color: #2e7d32;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 4px solid #4caf50;
+}
+
+/* Debug info (hidden by default) */
+.seed-of-life-debug {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    color: #00ff00;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    max-width: 350px;
+    z-index: 9999;
+    border: 1px solid #00ff00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.seed-of-life-debug.active {
+    display: block;
+}
+
+/* Animation keyframes */
+@keyframes seed-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.8;
+    }
+}
+
+.seed-of-life-animating {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Print styles */
+@media print {
+    .seed-of-life-controls {
+        display: none;
+    }
+    
+    .seed-of-life-container {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        background: white;
+    }
+}
+
+/* Accessibility */
+.sol-button:focus {
+    outline: 3px solid #667eea;
+    outline-offset: 2px;
+}
+
+.seed-of-life-canvas:focus {
+    outline: 3px solid #667eea;
+    outline-offset: 4px;
+}
+
+/* WordPress admin integration */
+.wp-admin .seed-of-life-container {
+    margin: 30px 0;
+}
+
+.wp-admin .form-table th {
+    width: 250px;
+    font-weight: 500;
+}
+
+/* Shortcode wrapper */
+.wp-block-seed-of-life {
+    text-align: center;
+    margin: 40px auto;
+    max-width: 100%;
+}
+
+/* Tooltip for color inputs */
+.color-field-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.color-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 8px;
+}
+
+.color-field-wrapper:hover .color-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Enhanced visual feedback */
+.seed-of-life-container.processing {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Color palette display */
+.color-palette {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 10px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.color-swatch {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.color-swatch:hover {
+    transform: scale(1.1);
+}
+
+/* Beautiful gradient background option */
+.gradient-background {
+    background: linear-gradient(135deg, 
+        rgba(102, 126, 234, 0.1) 0%, 
+        rgba(118, 75, 162, 0.1) 100%);
+    padding: 40px;
+    border-radius: 15px;
+}
+
+/* Smooth transitions */
+* {
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}

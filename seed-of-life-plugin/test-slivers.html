@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seed of Life - Inner Slivers Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        /* Define all the CSS classes for testing */
+        .sol-circle-1 { fill: #000000; background-color: #000000; }
+        .sol-circle-2 { fill: #00FF00; background-color: #00FF00; }
+        .sol-circle-3 { fill: #FF0000; background-color: #FF0000; }
+        .sol-circle-4 { fill: #8B4513; background-color: #8B4513; }
+        .sol-circle-5 { fill: #0000FF; background-color: #0000FF; }
+        .sol-circle-6 { fill: #00CED1; background-color: #00CED1; }
+        .sol-circle-center { fill: transparent; background-color: transparent; }
+        
+        /* Inner slivers - these are the important ones */
+        .sol-inner-sliver-1 { fill: #FFFF00; background-color: #FFFF00; }
+        .sol-inner-sliver-2 { fill: #FF00FF; background-color: #FF00FF; }
+        .sol-inner-sliver-3 { fill: #00FFFF; background-color: #00FFFF; }
+        .sol-inner-sliver-4 { fill: #FFA500; background-color: #FFA500; }
+        .sol-inner-sliver-5 { fill: #800080; background-color: #800080; }
+        .sol-inner-sliver-6 { fill: #FFFFFF; background-color: #FFFFFF; }
+        .sol-inner-sliver-7 { fill: #FFB6C1; background-color: #FFB6C1; }
+        .sol-inner-sliver-8 { fill: #98FB98; background-color: #98FB98; }
+        .sol-inner-sliver-9 { fill: #DDA0DD; background-color: #DDA0DD; }
+        .sol-inner-sliver-10 { fill: #F0E68C; background-color: #F0E68C; }
+        .sol-inner-sliver-11 { fill: #FA8072; background-color: #FA8072; }
+        .sol-inner-sliver-12 { fill: #ADD8E6; background-color: #ADD8E6; }
+        
+        .sol-border { stroke: #FFFFFF; stroke-width: 3px; }
+        .sol-background { fill: #FFFFFF; background-color: #FFFFFF; }
+        
+        .color-test {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .color-box {
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            font-size: 12px;
+        }
+        
+        #debug-output {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: #5a67d8;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🌺 Seed of Life - Inner Slivers Test</h1>
+        <p>This page tests whether the inner sliver CSS classes are properly defined and accessible.</p>
+        
+        <h2>Canvas Rendering</h2>
+        <canvas id="testCanvas" width="500" height="500" style="border: 1px solid #ddd;"></canvas>
+        
+        <div class="controls">
+            <button onclick="toggleAnimation()">Toggle Animation</button>
+            <button onclick="testSlivers()">Test Slivers</button>
+            <button onclick="checkClasses()">Check CSS Classes</button>
+        </div>
+    </div>
+    
+    <div class="test-container">
+        <h2>CSS Classes Color Test</h2>
+        <div class="color-test" id="colorTest"></div>
+    </div>
+    
+    <div class="test-container">
+        <h2>Debug Output</h2>
+        <div id="debug-output"></div>
+    </div>
+    
+    <!-- Include the JavaScript file -->
+    <script src="seed-of-life.js"></script>
+    
+    <script>
+        // Initialize the canvas
+        let seedOfLife;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the seed of life
+            if (typeof initSeedOfLife === 'function') {
+                seedOfLife = initSeedOfLife('testCanvas');
+                log('✅ Seed of Life initialized successfully');
+            } else {
+                log('❌ initSeedOfLife function not found');
+            }
+            
+            // Test CSS classes
+            testColorClasses();
+        });
+        
+        function log(message) {
+            const output = document.getElementById('debug-output');
+            const timestamp = new Date().toLocaleTimeString();
+            output.innerHTML += `[${timestamp}] ${message}<br>`;
+            output.scrollTop = output.scrollHeight;
+            console.log(message);
+        }
+        
+        function testColorClasses() {
+            const colorTest = document.getElementById('colorTest');
+            
+            // Test all inner sliver classes
+            for (let i = 1; i <= 12; i++) {
+                const className = `sol-inner-sliver-${i}`;
+                const testDiv = document.createElement('div');
+                testDiv.className = className;
+                document.body.appendChild(testDiv);
+                
+                const styles = window.getComputedStyle(testDiv);
+                const fillColor = styles.fill || 'none';
+                const bgColor = styles.backgroundColor || 'none';
+                
+                // Display the color box
+                const colorBox = document.createElement('div');
+                colorBox.className = 'color-box';
+                colorBox.style.backgroundColor = bgColor !== 'none' ? bgColor : fillColor;
+                colorBox.innerHTML = `
+                    ${className}<br>
+                    Fill: ${fillColor}<br>
+                    BG: ${bgColor}
+                `;
+                colorTest.appendChild(colorBox);
+                
+                // Log the result
+                if (fillColor !== 'none' && fillColor !== 'rgb(0, 0, 0)') {
+                    log(`✅ ${className}: ${fillColor}`);
+                } else {
+                    log(`⚠️ ${className}: No color defined (${fillColor})`);
+                }
+                
+                document.body.removeChild(testDiv);
+            }
+        }
+        
+        function toggleAnimation() {
+            if (seedOfLife && seedOfLife.toggleAnimation) {
+                seedOfLife.toggleAnimation();
+                log('🔄 Animation toggled');
+            }
+        }
+        
+        function testSlivers() {
+            log('🧪 Testing inner slivers rendering...');
+            
+            // Check if drawInnerSlivers function exists
+            if (seedOfLife && seedOfLife.draw) {
+                seedOfLife.draw();
+                log('✅ Draw function called');
+            }
+            
+            // Check canvas for colored pixels
+            const canvas = document.getElementById('testCanvas');
+            const ctx = canvas.getContext('2d');
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const pixels = imageData.data;
+            
+            const colors = new Set();
+            for (let i = 0; i < pixels.length; i += 4) {
+                const r = pixels[i];
+                const g = pixels[i + 1];
+                const b = pixels[i + 2];
+                const a = pixels[i + 3];
+                if (a > 0) {
+                    const hex = '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+                    colors.add(hex);
+                }
+            }
+            
+            log(`🎨 Found ${colors.size} unique colors on canvas`);
+            
+            // Check for specific sliver colors
+            const sliverColors = ['#ffff00', '#ff00ff', '#00ffff', '#ffa500', '#800080'];
+            sliverColors.forEach(color => {
+                if (Array.from(colors).some(c => c.toLowerCase() === color.toLowerCase())) {
+                    log(`✅ Found sliver color: ${color}`);
+                } else {
+                    log(`⚠️ Missing sliver color: ${color}`);
+                }
+            });
+        }
+        
+        function checkClasses() {
+            log('🔍 Checking CSS class definitions...');
+            
+            // Get all stylesheets
+            const sheets = document.styleSheets;
+            let foundClasses = [];
+            
+            for (let i = 0; i < sheets.length; i++) {
+                try {
+                    const rules = sheets[i].cssRules || sheets[i].rules;
+                    for (let j = 0; j < rules.length; j++) {
+                        const rule = rules[j];
+                        if (rule.selectorText && rule.selectorText.includes('sol-inner-sliver')) {
+                            foundClasses.push(rule.selectorText);
+                            log(`✅ Found: ${rule.selectorText} - ${rule.style.fill || rule.style.backgroundColor}`);
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin stylesheets will throw an error
+                }
+            }
+            
+            if (foundClasses.length === 0) {
+                log('⚠️ No sol-inner-sliver classes found in stylesheets');
+            } else {
+                log(`✅ Found ${foundClasses.length} inner sliver classes`);
+            }
+        }
+    </script>
+</body>
+</html>
